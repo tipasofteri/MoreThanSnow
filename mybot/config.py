@@ -5,7 +5,7 @@ import logging
 
 # ВАЖНО: Замените токен на новый, полученный от BotFather!
 # Рекомендуется использовать переменные окружения для защиты токена
-TOKEN = '8163198321:AAHuwe3-OiRFuetH7bs9YA437GrfZbh1cTc'  # Your bot token from @BotFather
+TOKEN = ''  # Your bot token from @BotFather
 
 # ID админа (для команд /reset, /cancel чужих игр)
 # Можно узнать у @userinfobot
