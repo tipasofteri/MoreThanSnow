@@ -1,0 +1,13 @@
+{
+  "8ed5549e-d801-4e93-a84b-fd1ef90e01c7": {
+    "chat_id": -1003355432765,
+    "discussion_time": 60,
+    "vote_time": 15,
+    "night_time": 30,
+    "auto_start": true,
+    "min_players": 4,
+    "max_players": 12,
+    "show_roles_on_end": true,
+    "events_enabled": true
+  }
+}

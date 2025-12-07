@@ -1,0 +1,397 @@
+{% extends "base.html" %}
+
+{% block title %}Главная - 🎭 Мафия: Новогодний Переполох{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Минималистичный новогодний стиль */
+    .hero-section {
+        min-height: 100vh;
+        background: #faf8f3;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Органическая типографика */
+    .organic-title {
+        font-family: 'Caveat', cursive;
+        font-weight: 700;
+        font-size: 5rem;
+        line-height: 1.1;
+        color: #1a1a1a;
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .organic-subtitle {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        color: #4a4a4a;
+        font-weight: 400;
+        font-style: italic;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    /* Декоративные элементы */
+    .tree-decoration {
+        position: absolute;
+        left: -50px;
+        top: 10%;
+        width: 200px;
+        height: 300px;
+        opacity: 0.08;
+        pointer-events: none;
+    }
+    
+    .snowflake-float {
+        position: absolute;
+        color: rgba(0, 0, 0, 0.05);
+        font-size: 2rem;
+        animation: float 25s infinite ease-in-out;
+        pointer-events: none;
+    }
+    
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0.05;
+        }
+        50% {
+            transform: translateY(-30px) rotate(180deg);
+            opacity: 0.1;
+        }
+    }
+    
+    /* Минималистичные кнопки */
+    .minimal-btn {
+        background: transparent;
+        border: 2px solid #2d2d2d;
+        color: #2d2d2d;
+        padding: 14px 36px;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .minimal-btn:hover {
+        background: #2d2d2d;
+        color: #faf8f3;
+        transform: translateY(-2px);
+    }
+    
+    .minimal-btn-primary {
+        background: #2d2d2d;
+        color: #faf8f3;
+    }
+    
+    .minimal-btn-primary:hover {
+        background: #1a1a1a;
+    }
+    
+    /* Описание */
+    .description-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #4a4a4a;
+        max-width: 600px;
+        margin: 0 auto 4rem;
+        text-align: center;
+        font-weight: 300;
+    }
+    
+    /* Информационный блок */
+    .info-block {
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin: 3rem auto;
+        max-width: 500px;
+        text-align: center;
+    }
+    
+    .info-block h3 {
+        font-family: 'Caveat', cursive;
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        color: #1a1a1a;
+    }
+    
+    .info-block p {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Статистика */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        max-width: 800px;
+        margin: 4rem auto;
+    }
+    
+    .stat-item {
+        text-align: center;
+    }
+    
+    .stat-number {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #666;
+    }
+    
+    /* Секции */
+    .section {
+        padding: 6rem 2rem;
+        background: #faf8f3;
+    }
+    
+    .section-title {
+        font-family: 'Caveat', cursive;
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: #1a1a1a;
+    }
+    
+    .feature-card {
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 2.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+    
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.7;
+    }
+    
+    .feature-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: #1a1a1a;
+    }
+    
+    .feature-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #666;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section">
+    <!-- Декоративные элементы -->
+    <div class="tree-decoration">
+        <svg viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 10 L30 50 L70 50 Z" fill="currentColor" opacity="0.3"/>
+            <path d="M50 40 L20 80 L80 80 Z" fill="currentColor" opacity="0.3"/>
+            <path d="M50 70 L10 120 L90 120 Z" fill="currentColor" opacity="0.3"/>
+            <rect x="45" y="120" width="10" height="30" fill="currentColor" opacity="0.3"/>
+        </svg>
+    </div>
+    
+    <!-- Снежинки -->
+    <div class="snowflake-float" style="top: 15%; right: 15%; animation-delay: 0s;">❄</div>
+    <div class="snowflake-float" style="top: 25%; right: 25%; animation-delay: 5s;">❅</div>
+    <div class="snowflake-float" style="top: 35%; right: 10%; animation-delay: 10s;">❆</div>
+    <div class="snowflake-float" style="top: 45%; right: 30%; animation-delay: 15s;">✻</div>
+    
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+        <h1 class="organic-title">
+            Мафия
+        </h1>
+        <p class="organic-subtitle">Новогодний Переполох</p>
+        
+        <p class="description-text">
+            Окунитесь в атмосферу загадочного Северного полюса, где каждый игрок получает свою уникальную роль 
+            в захватывающей игре в мафию по правилам Mafia.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+            <a href="https://t.me/MoreThanSnow_bot" target="_blank" class="minimal-btn minimal-btn-primary">
+                Добавить бота
+            </a>
+            <a href="{{ url_for('rules') }}" class="minimal-btn">
+                Правила игры
+            </a>
+            <a href="{{ url_for('updates') }}" class="minimal-btn">
+                Обновления
+            </a>
+        </div>
+        
+        <!-- Информация о боте -->
+        <div class="info-block">
+            <h3>@MoreThanSnow_bot</h3>
+            <p>Telegram бот для игры в мафию</p>
+            <a href="https://t.me/MoreThanSnow_bot" target="_blank" class="minimal-btn minimal-btn-primary">
+                Открыть в Telegram
+            </a>
+        </div>
+        
+        <!-- Статистика -->
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">13</div>
+                <div class="stat-label">Уникальных ролей</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Команды</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Доступность</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Игроков</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<section class="section">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="section-title">Как играть</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3 class="feature-title">Создайте игру</h3>
+                <p class="feature-text">
+                    Добавьте бота в Telegram группу и используйте команду /create для создания игры. 
+                    Соберите команду от 4 до 12 игроков.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎭</div>
+                <h3 class="feature-title">Получите роль</h3>
+                <p class="feature-text">
+                    Бот автоматически раздаст роли в личных сообщениях. Каждая роль имеет уникальные способности 
+                    и цели. Изучите свою роль внимательно!
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3 class="feature-title">Победите</h3>
+                <p class="feature-text">
+                    Мирные должны найти и изгнать всех злодеев. Мафия должна уравнять количество с мирными. 
+                    Маньяк должен остаться один.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Roles Preview Section -->
+<section class="section" style="background: rgba(250, 248, 243, 0.5);">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="section-title">Роли в игре</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="feature-card">
+                <div class="feature-icon">🎅</div>
+                <h3 class="feature-title">Мирные</h3>
+                <p class="feature-text">Добряк, Счастливчик, Камикадзе</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">👮</div>
+                <h3 class="feature-title">Порядок</h3>
+                <p class="feature-text">Санта-Комиссар, Младший Олень</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">😈</div>
+                <h3 class="feature-title">Злодеи</h3>
+                <p class="feature-text">Гринч, Тёмный Эльф</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🍷</div>
+                <h3 class="feature-title">Нейтралы</h3>
+                <p class="feature-text">Снегурочка, Крампус-Маньяк, Адвокат, Бродяга</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🧦</div>
+                <h3 class="feature-title">Защита</h3>
+                <p class="feature-text">Эльф-лекарь</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎭</div>
+                <h3 class="feature-title">Всего</h3>
+                <p class="feature-text">13 уникальных ролей</p>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="{{ url_for('rules') }}" class="minimal-btn minimal-btn-primary">
+                Подробнее о ролях и правилах
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Game Features Section -->
+<section class="section">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="section-title">Особенности</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3 class="feature-title">Полная автоматизация</h3>
+                <p class="feature-text">Бот управляет всеми этапами игры</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3 class="feature-title">Гибкие настройки</h3>
+                <p class="feature-text">Настройте время под свою группу</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3 class="feature-title">Защита от абуза</h3>
+                <p class="feature-text">Система предотвращает читерство</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📜</div>
+                <h3 class="feature-title">Правила Mafia</h3>
+                <p class="feature-text">Классическая механика игры</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

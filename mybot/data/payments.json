@@ -1,0 +1,32 @@
+{
+  "79785d04-d957-4a8f-a9cc-18746d343884": {
+    "user_id": 1098061153,
+    "item_id": "candies_1000",
+    "amount": 3,
+    "currency": "XTR",
+    "candies_received": 1000,
+    "payment_date": 1765100863,
+    "invoice_payload": "candies_candies_1000_1098061153",
+    "test": true
+  },
+  "57da7762-53a7-4e02-9dcd-3f11b6bf56cb": {
+    "user_id": 1098061153,
+    "item_id": "candies_10000",
+    "amount": 15,
+    "currency": "XTR",
+    "candies_received": 10000,
+    "payment_date": 1765100879,
+    "invoice_payload": "candies_candies_10000_1098061153",
+    "test": true
+  },
+  "0401285a-9ca7-4956-a9d7-d69fea431ce5": {
+    "user_id": 1098061153,
+    "item_id": "candies_2500",
+    "amount": 6,
+    "currency": "XTR",
+    "candies_received": 2500,
+    "payment_date": 1765100883,
+    "invoice_payload": "candies_candies_2500_1098061153",
+    "test": true
+  }
+}

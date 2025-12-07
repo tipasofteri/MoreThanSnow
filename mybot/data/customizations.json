@@ -1,0 +1,30 @@
+{
+  "26f80112-ceae-4513-8133-c47bfe211642": {
+    "user_id": 1098061153,
+    "chat_id": null,
+    "role_prefix": "⭐",
+    "role_suffix": "",
+    "name_formatting": "bold"
+  },
+  "8a7e4c25-085c-433a-9dac-0e7b45167a3e": {
+    "user_id": 7338314112,
+    "chat_id": null,
+    "role_prefix": "🏆",
+    "role_suffix": "",
+    "name_formatting": "normal"
+  },
+  "24402224-c245-4504-950b-cc24b875a490": {
+    "user_id": 7445548947,
+    "chat_id": null,
+    "role_prefix": "🏆",
+    "role_suffix": "",
+    "name_formatting": "normal"
+  },
+  "c3d86380-7c46-4331-b20c-21653f887602": {
+    "user_id": 1098061153,
+    "chat_id": -1003355432765,
+    "role_prefix": "",
+    "role_suffix": "",
+    "name_formatting": "italic"
+  }
+}

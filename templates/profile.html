@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% block title %}Профиль игрока{% endblock %}
+
+{% block content %}
+<section class="max-w-4xl mx-auto px-4 py-16">
+  <h1 class="text-3xl font-bold mb-6 text-gray-900">Профиль игрока</h1>
+
+  <div class="bg-white shadow-sm border border-gray-200 rounded-lg p-4 mb-6">
+    <label class="block text-sm font-medium text-gray-700 mb-2">Найти игрока</label>
+    <div class="flex flex-col gap-3">
+      <div class="relative">
+        <input id="userIdInput" type="text" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" placeholder="ID или @username" value="{{ user_id }}">
+        <div id="suggestions" class="hidden absolute z-10 mt-1 w-full bg-white border border-gray-200 shadow-sm rounded max-h-60 overflow-y-auto text-sm"></div>
+      </div>
+      <div class="flex gap-3">
+        <button id="loadBtn" class="bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-800">Загрузить</button>
+        <button id="copyBtn" class="text-sm text-gray-600 hover:text-gray-800">Копировать ID</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="profileCard" class="hidden bg-white shadow-sm border border-gray-200 rounded-lg p-6">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+      <div>
+        <h2 class="text-2xl font-semibold" id="pName"></h2>
+        <p class="text-gray-600 text-sm" id="pId"></p>
+      </div>
+      <a href="https://t.me/MoreThanSnow_bot" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">Открыть бота</a>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6 text-sm">
+      <div class="bg-gray-50 rounded p-3 border border-gray-100"><div class="text-gray-500">Игры</div><div class="text-lg font-semibold" id="pGames"></div></div>
+      <div class="bg-gray-50 rounded p-3 border border-gray-100"><div class="text-gray-500">Победы</div><div class="text-lg font-semibold" id="pWins"></div></div>
+      <div class="bg-gray-50 rounded p-3 border border-gray-100"><div class="text-gray-500">Поражения</div><div class="text-lg font-semibold" id="pLoss"></div></div>
+      <div class="bg-gray-50 rounded p-3 border border-gray-100"><div class="text-gray-500">Рейтинг</div><div class="text-lg font-semibold" id="pElo"></div></div>
+      <div class="bg-gray-50 rounded p-3 border border-gray-100"><div class="text-gray-500">Конфеты</div><div class="text-lg font-semibold" id="pCandies"></div></div>
+      <div class="bg-gray-50 rounded p-3 border border-gray-100"><div class="text-gray-500">Винрейт</div><div class="text-lg font-semibold" id="pWinrate"></div></div>
+    </div>
+
+    <div class="mb-6">
+      <h3 class="text-lg font-semibold mb-2">Динамика рейтинга</h3>
+      <div id="eloHistory" class="h-24 flex items-end gap-2 bg-gray-50 border border-gray-100 rounded p-3"></div>
+    </div>
+
+    <div id="rolesBlock" class="mb-2">
+      <h3 class="text-lg font-semibold mb-2">Роли и винрейт</h3>
+      <div id="rolesList" class="flex flex-wrap gap-2 text-sm"></div>
+    </div>
+  </div>
+
+  <div id="notFound" class="hidden text-red-600 font-medium mt-4">Игрок не найден.</div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+async function loadProfile(userId) {
+  if (!userId) return;
+  document.getElementById('notFound').classList.add('hidden');
+  const card = document.getElementById('profileCard');
+  card.classList.add('hidden');
+  try {
+    const res = await fetch(`/api/stats/${userId}`);
+    if (!res.ok) {
+      document.getElementById('notFound').classList.remove('hidden');
+      return;
+    }
+    const data = await res.json();
+    document.getElementById('pName').textContent = data.name || 'Игрок';
+    document.getElementById('pId').textContent = `ID: ${data.user_id || userId}`;
+    const gp = data.games_played || 0;
+    const gw = data.games_won || 0;
+    const gl = data.games_lost || 0;
+    const wr = gp > 0 ? ((gw / gp) * 100).toFixed(1) + '%' : '0%';
+    document.getElementById('pGames').textContent = gp;
+    document.getElementById('pWins').textContent = gw;
+    document.getElementById('pLoss').textContent = gl;
+    document.getElementById('pElo').textContent = data.elo_rating || 0;
+    document.getElementById('pCandies').textContent = data.candies || 0;
+    document.getElementById('pWinrate').textContent = wr;
+
+    const roles = data.roles_played || {};
+    const wins = data.wins_by_role || {};
+    const rolesList = document.getElementById('rolesList');
+    rolesList.innerHTML = '';
+    const entries = Object.entries(roles).sort((a,b) => b[1]-a[1]);
+    if (!entries.length) {
+      rolesList.textContent = 'Нет данных';
+    } else {
+      entries.forEach(([role, played]) => {
+        const w = wins[role] || 0;
+        const r = played ? ((w/played)*100).toFixed(1) : '0.0';
+        const chip = document.createElement('span');
+        chip.className = 'inline-flex items-center gap-2 px-3 py-2 rounded-full bg-gray-100 text-gray-800 border border-gray-200';
+        chip.innerHTML = `<span class="font-semibold">${role}</span><span class="text-xs text-gray-600">${w}/${played} (${r}%)</span>`;
+        rolesList.appendChild(chip);
+      });
+    }
+
+    const history = data.elo_history || [];
+    const historyBox = document.getElementById('eloHistory');
+    historyBox.innerHTML = '';
+    if (history.length) {
+      const recent = history.slice(-6).map(h => h.rating);
+      const min = Math.min(...recent);
+      const max = Math.max(...recent);
+      recent.forEach(val => {
+        const bar = document.createElement('div');
+        bar.className = 'flex-1 bg-blue-200 rounded';
+        const norm = max === min ? 100 : Math.max(10, ((val - min) / (max - min)) * 100);
+        bar.style.height = norm + '%';
+        historyBox.appendChild(bar);
+      });
+    } else {
+      historyBox.innerHTML = '<div class="text-sm text-gray-500">Нет истории рейтинга</div>';
+    }
+
+    card.classList.remove('hidden');
+  } catch (e) {
+    document.getElementById('notFound').classList.remove('hidden');
+  }
+}
+
+let suggestTimer;
+document.getElementById('userIdInput').addEventListener('input', (e) => {
+  const val = e.target.value.trim();
+  const box = document.getElementById('suggestions');
+  if (!val) { box.classList.add('hidden'); box.innerHTML = ''; return; }
+  clearTimeout(suggestTimer);
+  suggestTimer = setTimeout(async () => {
+    try {
+      const res = await fetch(`/api/search_players?q=${encodeURIComponent(val)}&limit=20`);
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data.length) { box.classList.add('hidden'); box.innerHTML = ''; return; }
+      box.innerHTML = data.map(item => `
+        <button class="w-full text-left px-3 py-2 hover:bg-gray-100 flex justify-between items-center" data-id="${item.user_id}">
+          <span>${item.name || 'Игрок'}</span>
+          <span class="text-xs text-gray-500">ID: ${item.user_id}</span>
+        </button>
+      `).join('');
+      box.classList.remove('hidden');
+      box.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          document.getElementById('userIdInput').value = id;
+          box.classList.add('hidden');
+          loadProfile(id);
+        });
+      });
+    } catch {}
+  }, 200);
+});
+
+document.getElementById('copyBtn').addEventListener('click', async () => {
+  const val = document.getElementById('userIdInput').value.trim();
+  if (!val) return;
+  try { await navigator.clipboard.writeText(val); } catch {}
+});
+
+document.getElementById('loadBtn').addEventListener('click', () => {
+  const val = document.getElementById('userIdInput').value.trim();
+  loadProfile(val);
+});
+const preset = document.getElementById('userIdInput').value.trim();
+if (preset) loadProfile(preset);
+</script>
+{% endblock %}
+

@@ -1,0 +1,283 @@
+{
+  "1f429a76-b279-4bb4-861d-eb9df67f6e15": {
+    "user_id": 1098061153,
+    "name": "@AssetPro",
+    "games_played": 202,
+    "games_won": 200,
+    "games_lost": 2,
+    "roles_played": {
+      "peace": 20,
+      "civilian": 20,
+      "mafia": 11,
+      "don": 10,
+      "commissar": 10,
+      "sergeant": 20,
+      "doctor": 11,
+      "maniac": 10,
+      "mistress": 20,
+      "lawyer": 10,
+      "suicide": 10,
+      "bum": 20,
+      "lucky": 10,
+      "kamikaze": 20
+    },
+    "wins_by_role": {
+      "peace": 20,
+      "civilian": 20,
+      "mafia": 10,
+      "don": 10,
+      "commissar": 10,
+      "sergeant": 20,
+      "doctor": 10,
+      "maniac": 10,
+      "mistress": 20,
+      "lawyer": 10,
+      "suicide": 10,
+      "bum": 20,
+      "lucky": 10,
+      "kamikaze": 20
+    },
+    "wins_by_team": {
+      "peaceful": 20,
+      "mafia": 130,
+      "maniac": 50
+    },
+    "candies": 21005,
+    "_id": "1f429a76-b279-4bb4-861d-eb9df67f6e15",
+    "elo_history": [
+      {
+        "rating": 1400,
+        "timestamp": "2025-12-07T12:36:47.841420",
+        "game_id": "unknown"
+      }
+    ],
+    "avg_opponent_rating": 4.9504950495049505,
+    "games_by_hour": {
+      "12": 1
+    },
+    "games_by_day": {
+      "6": 1
+    },
+    "wins_by_hour": {},
+    "wins_by_day": {},
+    "elo_rating": 1150,
+    "achievements": [
+      "games_10",
+      "games_50",
+      "games_100",
+      "wins_10",
+      "wins_50",
+      "wins_100",
+      "all_roles",
+      "role_mafia_10",
+      "role_don_10",
+      "role_commissar_10",
+      "role_doctor_10",
+      "role_maniac_10",
+      "win_all_teams",
+      "candies_1000",
+      "candies_5000"
+    ],
+    "inventory": {
+      "titles": [
+        "title_mafia_boss",
+        "title_doctor"
+      ],
+      "badges": [
+        "badge_champion",
+        "badge_veteran",
+        "badge_legend"
+      ],
+      "events": [
+        {
+          "event_id": "unknown",
+          "event_name": "all_roles_reveal",
+          "purchased_at": "2025-12-07T13:40:01.797639"
+        },
+        {
+          "event_id": "unknown",
+          "event_name": "time_rewind",
+          "purchased_at": "2025-12-07T14:35:44.874447"
+        },
+        {
+          "event_id": "unknown",
+          "event_name": "time_rewind",
+          "purchased_at": "2025-12-07T14:35:52.175621"
+        },
+        {
+          "event_id": "unknown",
+          "event_name": "time_rewind",
+          "purchased_at": "2025-12-07T14:36:05.408831"
+        },
+        {
+          "event_id": "unknown",
+          "event_name": "extra_time",
+          "purchased_at": "2025-12-07T14:58:07.744103"
+        }
+      ]
+    }
+  },
+  "99c00b2d-3738-4d4b-b7f9-28d2f6746e4b": {
+    "user_id": 6272461123,
+    "name": "@nonamegag",
+    "games_played": 4,
+    "games_won": 2,
+    "games_lost": 2,
+    "roles_played": {
+      "sergeant": 2,
+      "commissar": 2
+    },
+    "wins_by_role": {
+      "sergeant": 1,
+      "commissar": 1
+    },
+    "wins_by_team": {
+      "peaceful": 2,
+      "mafia": 0,
+      "maniac": 0
+    },
+    "candies": 20,
+    "_id": "99c00b2d-3738-4d4b-b7f9-28d2f6746e4b",
+    "elo_history": [
+      {
+        "rating": 800,
+        "timestamp": "2025-12-07T12:36:47.841420",
+        "game_id": "unknown"
+      }
+    ],
+    "avg_opponent_rating": 250.0,
+    "games_by_hour": {
+      "12": 1
+    },
+    "games_by_day": {
+      "6": 1
+    },
+    "wins_by_hour": {},
+    "wins_by_day": {},
+    "elo_rating": 1000,
+    "achievements": []
+  },
+  "ce9f47bd-944f-4350-9566-b8583e2727ab": {
+    "user_id": 7338314112,
+    "name": "@Infinite_seasons",
+    "games_played": 4,
+    "games_won": 1,
+    "games_lost": 3,
+    "roles_played": {
+      "commissar": 2,
+      "mafia": 2
+    },
+    "wins_by_role": {
+      "commissar": 1
+    },
+    "wins_by_team": {
+      "peaceful": 1,
+      "mafia": 0,
+      "maniac": 0
+    },
+    "candies": 20,
+    "_id": "ce9f47bd-944f-4350-9566-b8583e2727ab",
+    "elo_history": [
+      {
+        "rating": 1050,
+        "timestamp": "2025-12-07T12:36:47.841420",
+        "game_id": "unknown"
+      }
+    ],
+    "avg_opponent_rating": 250.0,
+    "games_by_hour": {
+      "12": 1
+    },
+    "games_by_day": {
+      "6": 1
+    },
+    "wins_by_hour": {},
+    "wins_by_day": {},
+    "elo_rating": 1000,
+    "achievements": [
+      "first_win"
+    ]
+  },
+  "a8ed8500-bd50-431b-b7f7-cbdc332e8e01": {
+    "user_id": 7445548947,
+    "name": "I’m not interested",
+    "games_played": 4,
+    "games_won": 1,
+    "games_lost": 3,
+    "roles_played": {
+      "mafia": 1,
+      "sergeant": 2,
+      "doctor": 1
+    },
+    "wins_by_role": {
+      "sergeant": 1
+    },
+    "wins_by_team": {
+      "peaceful": 1,
+      "mafia": 0,
+      "maniac": 0
+    },
+    "candies": 20,
+    "_id": "a8ed8500-bd50-431b-b7f7-cbdc332e8e01",
+    "elo_history": [
+      {
+        "rating": 1000,
+        "timestamp": "2025-12-07T12:36:47.841420",
+        "game_id": "unknown"
+      }
+    ],
+    "avg_opponent_rating": 250.0,
+    "games_by_hour": {
+      "12": 1
+    },
+    "games_by_day": {
+      "6": 1
+    },
+    "wins_by_hour": {},
+    "wins_by_day": {},
+    "elo_rating": 1000,
+    "achievements": [
+      "first_win"
+    ]
+  },
+  "a8238200-bd50-431b-b7f7-cbdc332e8e01": {
+    "user_id": 7445548947,
+    "name": "@durov",
+    "games_played": 2,
+    "games_won": 2,
+    "games_lost": 4,
+    "roles_played": {
+      "mafia": 1
+    },
+    "wins_by_role": {
+      "sergeant": 1
+    },
+    "wins_by_team": {
+      "peaceful": 1,
+      "mafia": 0,
+      "maniac": 0
+    },
+    "candies": 1111,
+    "_id": "a8ed8500-bd50-431b-b7f7-cbdc332e8e01",
+    "elo_history": [
+      {
+        "rating": 2000,
+        "timestamp": "2025-12-07T12:36:47.841420",
+        "game_id": "unknown"
+      }
+    ],
+    "avg_opponent_rating": 2000.0,
+    "games_by_hour": {
+      "12": 100
+    },
+    "games_by_day": {
+      "6": 100
+    },
+    "wins_by_hour": {},
+    "wins_by_day": {},
+    "elo_rating": 2000,
+    "achievements": [
+      "first_win"
+    ]
+  }
+}

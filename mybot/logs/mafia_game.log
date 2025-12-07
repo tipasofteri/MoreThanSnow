@@ -1,0 +1,208 @@
+2025-12-07 14:31:57 [ERROR] Error sending invoice: TeleBot.send_invoice() missing 1 required positional argument: 'start_parameter'
+2025-12-07 14:47:43 [INFO] Test payment processed: user 1098061153, item candies_1000, 1000 candies
+2025-12-07 14:47:59 [INFO] Test payment processed: user 1098061153, item candies_10000, 10000 candies
+2025-12-07 14:48:03 [INFO] Test payment processed: user 1098061153, item candies_2500, 2500 candies
+2025-12-07 15:22:59 [ERROR] ConnectionError occurred, args=(ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')),)
+Traceback (most recent call last):
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connection.py", line 565, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1411, in getresponse
+    response.begin()
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 324, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 293, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\util\retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connection.py", line 565, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1411, in getresponse
+    response.begin()
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 324, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 293, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\util.py", line 60, in run
+    task(*args, **kwargs)
+  File "C:\Users\pavlo\OneDrive\Desktop\MTGHNY\mafia_host_bot-master\src\handlers.py", line 2859, in buy_stars_callback_handler
+    safe_answer_callback(call.id, "❌ Товар не найден", show_alert=True)
+  File "C:\Users\pavlo\OneDrive\Desktop\MTGHNY\mafia_host_bot-master\src\handlers.py", line 87, in safe_answer_callback
+    bot.answer_callback_query(callback_query_id=call_id, text=text, show_alert=show_alert)
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\__init__.py", line 1267, in answer_callback_query
+    return apihelper.answer_callback_query(self.token, callback_query_id, text, show_alert, url, cache_time)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\apihelper.py", line 908, in answer_callback_query
+    return _make_request(token, method_url, params=payload, method='post')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\apihelper.py", line 57, in _make_request
+    result = _get_req_session().request(method, request_url, params=params, files=files,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\adapters.py", line 659, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+2025-12-07 15:22:59 [CRITICAL] Fatal error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+Traceback (most recent call last):
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connection.py", line 565, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1411, in getresponse
+    response.begin()
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 324, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 293, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\util\retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\urllib3\connection.py", line 565, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1411, in getresponse
+    response.begin()
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 324, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 293, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\pavlo\OneDrive\Desktop\MTGHNY\mafia_host_bot-master\src\app.py", line 267, in main
+    bot.polling(none_stop=True, interval=1, timeout=20)
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\__init__.py", line 392, in polling
+    self.__threaded_polling(none_stop, interval, timeout)
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\__init__.py", line 416, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\util.py", line 109, in raise_exceptions
+    six.reraise(self.exc_info[0], self.exc_info[1], self.exc_info[2])
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\six.py", line 724, in reraise
+    raise value
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\util.py", line 60, in run
+    task(*args, **kwargs)
+  File "C:\Users\pavlo\OneDrive\Desktop\MTGHNY\mafia_host_bot-master\src\handlers.py", line 2859, in buy_stars_callback_handler
+    safe_answer_callback(call.id, "❌ Товар не найден", show_alert=True)
+  File "C:\Users\pavlo\OneDrive\Desktop\MTGHNY\mafia_host_bot-master\src\handlers.py", line 87, in safe_answer_callback
+    bot.answer_callback_query(callback_query_id=call_id, text=text, show_alert=show_alert)
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\__init__.py", line 1267, in answer_callback_query
+    return apihelper.answer_callback_query(self.token, callback_query_id, text, show_alert, url, cache_time)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\apihelper.py", line 908, in answer_callback_query
+    return _make_request(token, method_url, params=payload, method='post')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\apihelper.py", line 57, in _make_request
+    result = _get_req_session().request(method, request_url, params=params, files=files,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\adapters.py", line 659, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-12-07 16:07:08 [ERROR] TypeError occurred, args=("Database.update_one() got an unexpected keyword argument 'multi'",)
+Traceback (most recent call last):
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\util.py", line 60, in run
+    task(*args, **kwargs)
+  File "C:\Users\pavlo\OneDrive\Desktop\MTGHNY\mafia_host_bot-master\src\handlers.py", line 1494, in report_command
+    success, msg = report_player(reporter_id, reported_id, reason)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\OneDrive\Desktop\MTGHNY\mafia_host_bot-master\src\moderation.py", line 111, in report_player
+    ban_player(reported_id, ADMIN_ID or 0, f"Автомодерация: {report_count} жалоб", ban_until)
+  File "C:\Users\pavlo\OneDrive\Desktop\MTGHNY\mafia_host_bot-master\src\moderation.py", line 158, in ban_player
+    database.update_one('reports', {'reported_id': user_id, 'status': 'pending'},
+TypeError: Database.update_one() got an unexpected keyword argument 'multi'
+
+2025-12-07 16:07:09 [CRITICAL] Fatal error: Database.update_one() got an unexpected keyword argument 'multi'
+Traceback (most recent call last):
+  File "C:\Users\pavlo\OneDrive\Desktop\MTGHNY\mafia_host_bot-master\src\app.py", line 267, in main
+    bot.polling(none_stop=True, interval=1, timeout=20)
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\__init__.py", line 392, in polling
+    self.__threaded_polling(none_stop, interval, timeout)
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\__init__.py", line 416, in __threaded_polling
+    self.worker_pool.raise_exceptions()
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\util.py", line 109, in raise_exceptions
+    six.reraise(self.exc_info[0], self.exc_info[1], self.exc_info[2])
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\six.py", line 724, in reraise
+    raise value
+  File "C:\Users\pavlo\AppData\Local\Programs\Python\Python312\Lib\site-packages\telebot\util.py", line 60, in run
+    task(*args, **kwargs)
+  File "C:\Users\pavlo\OneDrive\Desktop\MTGHNY\mafia_host_bot-master\src\handlers.py", line 1494, in report_command
+    success, msg = report_player(reporter_id, reported_id, reason)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pavlo\OneDrive\Desktop\MTGHNY\mafia_host_bot-master\src\moderation.py", line 111, in report_player
+    ban_player(reported_id, ADMIN_ID or 0, f"Автомодерация: {report_count} жалоб", ban_until)
+  File "C:\Users\pavlo\OneDrive\Desktop\MTGHNY\mafia_host_bot-master\src\moderation.py", line 158, in ban_player
+    database.update_one('reports', {'reported_id': user_id, 'status': 'pending'},
+TypeError: Database.update_one() got an unexpected keyword argument 'multi'

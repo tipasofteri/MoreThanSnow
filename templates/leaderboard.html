@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Лидерборд{% endblock %}
+
+{% block content %}
+<section class="max-w-4xl mx-auto px-4 py-16">
+  <h1 class="text-3xl font-bold mb-6 text-gray-900">Лидерборд</h1>
+  <div class="bg-white shadow-sm border border-gray-200 rounded-lg overflow-hidden">
+    <table class="min-w-full text-sm">
+      <thead class="bg-gray-50 border-b border-gray-200">
+        <tr>
+          <th class="px-4 py-3 text-left font-semibold text-gray-700">#</th>
+          <th class="px-4 py-3 text-left font-semibold text-gray-700">Игрок</th>
+          <th class="px-4 py-3 text-left font-semibold text-gray-700">Рейтинг</th>
+          <th class="px-4 py-3 text-left font-semibold text-gray-700">Игры</th>
+          <th class="px-4 py-3 text-left font-semibold text-gray-700">Победы</th>
+          <th class="px-4 py-3 text-left font-semibold text-gray-700">Конфеты</th>
+        </tr>
+      </thead>
+      <tbody id="lbBody"></tbody>
+    </table>
+  </div>
+  <div id="lbError" class="text-red-600 font-medium mt-4 hidden">Не удалось загрузить таблицу.</div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+async function loadLb() {
+  const body = document.getElementById('lbBody');
+  const err = document.getElementById('lbError');
+  body.innerHTML = '';
+  err.classList.add('hidden');
+  try {
+    const res = await fetch('/api/leaderboard');
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    data.forEach((row, idx) => {
+      const tr = document.createElement('tr');
+      tr.className = idx % 2 ? 'bg-gray-50' : '';
+      tr.innerHTML = `
+        <td class="px-4 py-3 text-gray-700">${idx+1}</td>
+        <td class="px-4 py-3 text-gray-900 font-medium">${row.name || 'Игрок'}</td>
+        <td class="px-4 py-3 text-gray-700">${row.elo_rating ?? 0}</td>
+        <td class="px-4 py-3 text-gray-700">${row.games_played ?? 0}</td>
+        <td class="px-4 py-3 text-gray-700">${row.games_won ?? 0}</td>
+        <td class="px-4 py-3 text-gray-700">${row.candies ?? 0}</td>
+      `;
+      body.appendChild(tr);
+    });
+  } catch (e) {
+    err.classList.remove('hidden');
+  }
+}
+loadLb();
+</script>
+{% endblock %}
+

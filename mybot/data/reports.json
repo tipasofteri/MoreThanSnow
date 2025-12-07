@@ -1,0 +1,38 @@
+{
+  "ec432c72-80f2-49b3-bc1f-74c1a3b9c080": {
+    "reporter_id": 1098061153,
+    "reporter_name": "@AssetPro",
+    "reported_id": 7445548947,
+    "reported_name": "I’m not interested",
+    "reason": "test",
+    "created_at": "2025-12-07T16:06:17.918978",
+    "status": "pending"
+  },
+  "9d0308c2-b82e-4024-8ebc-062ff496bb8b": {
+    "reporter_id": 1098061153,
+    "reporter_name": "@AssetPro",
+    "reported_id": 7445548947,
+    "reported_name": "I’m not interested",
+    "reason": "test",
+    "created_at": "2025-12-07T16:07:07.664487",
+    "status": "pending"
+  },
+  "9b5c5f11-4aa4-43ad-be24-f0b624586ac0": {
+    "reporter_id": 1098061153,
+    "reporter_name": "@AssetPro",
+    "reported_id": 7445548947,
+    "reported_name": "I’m not interested",
+    "reason": "test",
+    "created_at": "2025-12-07T16:07:08.798629",
+    "status": "pending"
+  },
+  "8a405062-ac65-408b-87e6-30e0734de7ab": {
+    "reporter_id": 1098061153,
+    "reporter_name": "@AssetPro",
+    "reported_id": 7445548947,
+    "reported_name": "I’m not interested",
+    "reason": "test",
+    "created_at": "2025-12-07T16:46:03.296029",
+    "status": "pending"
+  }
+}

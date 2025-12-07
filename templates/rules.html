@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+
+{% block title %}Правила игры - 🎄 Мафия: Новогодний Переполох{% endblock %}
+
+{% block extra_css %}
+<style>
+    .role-section {
+        background: rgba(255, 255, 255, 0.6);
+        border-left: 3px solid;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .role-section:hover {
+        transform: translateX(3px);
+        border-left-width: 4px;
+    }
+    .role-peaceful { border-left-color: #4a5568; }
+    .role-order { border-left-color: #4a5568; }
+    .role-evil { border-left-color: #4a5568; }
+    .role-neutral { border-left-color: #4a5568; }
+    .role-defense { border-left-color: #4a5568; }
+    .timeline-item {
+        position: relative;
+        padding-left: 2.5rem;
+    }
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.5rem;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #2d2d2d;
+        border: 2px solid #faf8f3;
+    }
+    .timeline-item::after {
+        content: '';
+        position: absolute;
+        left: 3px;
+        top: 1.2rem;
+        width: 2px;
+        height: calc(100% + 1rem);
+        background: rgba(0, 0, 0, 0.1);
+    }
+    .timeline-item:last-child::after {
+        display: none;
+    }
+    .section-title {
+        font-family: 'Caveat', cursive;
+        font-size: 3rem;
+        color: #1a1a1a;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen light-bg py-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h1 class="section-title mb-4">
+                Правила игры
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto" style="font-family: 'Playfair Display', serif; font-style: italic;">
+                Полное руководство по игре в мафию по правилам Mafia с новогодней тематикой
+            </p>
+        </div>
+        
+        <div class="space-y-10">
+            <!-- Роли -->
+            <section class="bg-white/60 rounded-lg p-8 border border-gray-200">
+                <h2 class="text-2xl font-bold mb-6 text-gray-900" style="font-family: 'Caveat', cursive;">
+                    🎭 Роли в игре
+                </h2>
+                
+                <div class="space-y-6">
+                    <!-- Мирные -->
+                    <div class="role-section role-peaceful p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900" style="font-family: 'Playfair Display', serif;">
+                            🎅 Мирные жители
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-white/40 p-4 rounded border border-gray-200">
+                                <h4 class="font-bold text-gray-900 mb-2">Добряк</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">Обычный мирный житель, пытается найти мафию днём и голосовать против подозрительных игроков.</p>
+                            </div>
+                            <div class="bg-white/40 p-4 rounded border border-gray-200">
+                                <h4 class="font-bold text-gray-900 mb-2">Счастливчик</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">Мирный житель, которому везёт больше остальных. При покушении может выжить с вероятностью 50%.</p>
+                            </div>
+                            <div class="bg-white/40 p-4 rounded border border-gray-200">
+                                <h4 class="font-bold text-gray-900 mb-2">Хлопушка (Камикадзе)</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">Мирный житель, который в случае повешения может забрать кого-нибудь с собой в могилу (случайный выбор из проголосовавших).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Порядок -->
+                    <div class="role-section role-order p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900" style="font-family: 'Playfair Display', serif;">
+                            👮 Порядок
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-white/40 p-4 rounded border border-gray-200">
+                                <h4 class="font-bold text-gray-900 mb-2">Санта-Комиссар</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">Страж порядка. Ночью может либо узнать роль одного из игроков, либо убить. В первую ночь может только проверять.</p>
+                            </div>
+                            <div class="bg-white/40 p-4 rounded border border-gray-200">
+                                <h4 class="font-bold text-gray-900 mb-2">Младший Олень (Сержант)</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">Помощник комиссара. Узнаёт о всех проверках со стороны комиссара. В случае гибели комиссара повышается по службе (становится новым комиссаром).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Защита -->
+                    <div class="role-section role-defense p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900" style="font-family: 'Playfair Display', serif;">
+                            🧦 Защита
+                        </h3>
+                        <div class="bg-white/40 p-4 rounded border border-gray-200">
+                            <h4 class="font-bold text-gray-900 mb-2">Эльф-лекарь (Доктор)</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed">Работник реанимации. Ночью может приехать к одному из игроков и спасти ему жизнь. Один раз за игру может спасти сам себя.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Злодеи -->
+                    <div class="role-section role-evil p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900" style="font-family: 'Playfair Display', serif;">
+                            😈 Злодеи
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-white/40 p-4 rounded border border-gray-200">
+                                <h4 class="font-bold text-gray-900 mb-2">Гринч (Мафия)</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">Член мафиозной семьи. Ночью вместе с семьёй выбирает жертву и исполняет приговор. Может стать новым Доном, если прежнего убьют.</p>
+                            </div>
+                            <div class="bg-white/40 p-4 rounded border border-gray-200">
+                                <h4 class="font-bold text-gray-900 mb-2">Тёмный Эльф (Дон)</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">Глава мафии. Ночью вместе со всей мафиозной семьёй выбирает жертву. Также каждую ночь ищет Комиссара (проверяет одного игрока).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Нейтралы -->
+                    <div class="role-section role-neutral p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-900" style="font-family: 'Playfair Display', serif;">
+                            🍷 Нейтральные роли
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-white/40 p-4 rounded border border-gray-200">
+                                <h4 class="font-bold text-gray-900 mb-2">Снегурочка (Любовница)</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">Девушка, способная отвлечь любого персонажа на целую ночь. Её спутник бездействует всю ночь и весь следующий день.</p>
+                            </div>
+                            <div class="bg-white/40 p-4 rounded border border-gray-200">
+                                <h4 class="font-bold text-gray-900 mb-2">Крампус-Маньяк</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">Сумасшедший житель, убивающий каждую ночь всех подряд. Цель – убить всех и остаться одному!</p>
+                            </div>
+                            <div class="bg-white/40 p-4 rounded border border-gray-200">
+                                <h4 class="font-bold text-gray-900 mb-2">Адвокат Рождества</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">Юрист, он не знает кто мафия и выбирает себе подзащитного наугад. Если комиссар решит проверить подзащитного, то получит информацию, что проверил мирного жителя (даже если это не так).</p>
+                            </div>
+                            <div class="bg-white/40 p-4 rounded border border-gray-200">
+                                <h4 class="font-bold text-gray-900 mb-2">Снегодуй (Самоубийца)</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">Нейтральная роль, которая выигрывает только при победе в смертельном дневном голосовании (нужно умереть днём).</p>
+                            </div>
+                            <div class="bg-white/40 p-4 rounded border border-gray-200">
+                                <h4 class="font-bold text-gray-900 mb-2">Бродяга (Бомж)</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">Всю ночь бродит по городу и может стать свидетелем любого произошедшего действия (увидеть, кто и к кому ходил).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Цели победы -->
+            <section class="bg-white/60 rounded-lg p-8 border border-gray-200">
+                <h2 class="text-2xl font-bold mb-6 text-gray-900" style="font-family: 'Caveat', cursive;">
+                    🏆 Цели победы
+                </h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white/80 p-6 rounded border border-gray-200 text-center">
+                        <div class="text-3xl mb-3">✅</div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Мирные</h3>
+                        <p class="text-gray-600 text-sm">Изгнать всех злодеев (мафию и маньяка)</p>
+                    </div>
+                    <div class="bg-white/80 p-6 rounded border border-gray-200 text-center">
+                        <div class="text-3xl mb-3">✅</div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Мафия</h3>
+                        <p class="text-gray-600 text-sm">Уравнять количество с мирными</p>
+                    </div>
+                    <div class="bg-white/80 p-6 rounded border border-gray-200 text-center">
+                        <div class="text-3xl mb-3">✅</div>
+                        <h3 class="text-lg font-bold mb-2 text-gray-900">Маньяк</h3>
+                        <p class="text-gray-600 text-sm">Остаться одному</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Механика игры -->
+            <section class="bg-white/60 rounded-lg p-8 border border-gray-200">
+                <h2 class="text-2xl font-bold mb-6 text-gray-900" style="font-family: 'Caveat', cursive;">
+                    ⚙️ Механика игры
+                </h2>
+                <div class="space-y-6">
+                    <div class="timeline-item">
+                        <div class="bg-white/40 p-6 rounded border border-gray-200">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900" style="font-family: 'Playfair Display', serif;">
+                                🌙 Первая ночь
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Мафия знакомится друг с другом (1 минута на обсуждение через команду <code class="bg-gray-100 px-2 py-1 rounded text-sm">/mafia</code>). 
+                                Дон назначает порядок отстрела на последующие ночи. После этого мафия "засыпает".
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-white/40 p-6 rounded border border-gray-200">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900" style="font-family: 'Playfair Display', serif;">
+                                ☀️ День (Обсуждение)
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed mb-3">
+                                Свободное общение (время настраивается в настройках группы). Любой живой игрок может выставить кандидата 
+                                на голосование через кнопки в личных сообщениях бота. Голоса отображаются в реальном времени рядом с именами игроков.
+                            </p>
+                            <p class="text-gray-600 leading-relaxed">
+                                Если один игрок получает большинство голосов, появляется подтверждение (👍👎) перед его исключением.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-white/40 p-6 rounded border border-gray-200">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900" style="font-family: 'Playfair Display', serif;">
+                                🗳 Голосование
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed mb-3">
+                                Голосование происходит только среди выставленных кандидатов. Каждый игрок может проголосовать за одного кандидата.
+                            </p>
+                            <p class="text-gray-600 leading-relaxed">
+                                При ничьей - дополнительные 30 секунд обсуждения и повторное голосование. Если ничья повторяется, 
+                                голосуется вопрос: "Кто за то, чтобы все голосуемые игроки покинули стол?"
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-white/40 p-6 rounded border border-gray-200">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900" style="font-family: 'Playfair Display', serif;">
+                                🌙 Ночь
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed mb-3">
+                                Каждая роль выполняет своё действие через кнопки в личных сообщениях бота. Порядок действий:
+                            </p>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-600 ml-4">
+                                <li>Гринч (Мафия) - выбирает жертву</li>
+                                <li>Тёмный Эльф (Дон) - ищет Комиссара</li>
+                                <li>Санта-Комиссар - проверяет или убивает</li>
+                                <li>Эльф-лекарь (Доктор) - лечит игрока</li>
+                                <li>Крампус-Маньяк - убивает жертву</li>
+                                <li>Снегурочка (Любовница) - блокирует игрока</li>
+                                <li>Адвокат - выбирает подзащитного</li>
+                                <li>Бродяга (Бомж) - следит за игроком</li>
+                            </ol>
+                            <p class="text-gray-600 leading-relaxed mt-3">
+                                Ночь может закончиться по таймеру или автоматически, если все активные роли выполнили свои действия.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-white/40 p-6 rounded border border-gray-200">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900" style="font-family: 'Playfair Display', serif;">
+                                ⚠️ Пропуск действий
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                При пропуске действия игрок получает предупреждение. Сообщения с кнопками автоматически удаляются, 
+                                если игрок не сделал ход. При пропуске 2 действий подряд - автоматическое исключение из игры.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-white/40 p-6 rounded border border-gray-200">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900" style="font-family: 'Playfair Display', serif;">
+                                🎯 Лучший ход
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Игрок, убитый во вторую игровую ночь (первую ночь после договорки), имеет право сделать "лучший ход". 
+                                У него есть 20 секунд, чтобы назвать 3 номера игроков, которых он считает мафией.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-white/40 p-6 rounded border border-gray-200">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900" style="font-family: 'Playfair Display', serif;">
+                                🎤 Последнее слово
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Игрок, исключённый по результатам голосования, имеет право на последнее слово продолжительностью 1 минуту.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="mt-12 text-center">
+            <a href="{{ url_for('index') }}" class="minimal-btn minimal-btn-primary">
+                ← Вернуться на главную
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

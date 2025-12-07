@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+
+{% block title %}О проекте - 🎄 Мафия: Новогодний Переполох{% endblock %}
+
+{% block extra_css %}
+<style>
+    .feature-card {
+        background: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(0, 0, 0, 0.2);
+    }
+    .step-card {
+        position: relative;
+        padding-left: 3rem;
+    }
+    .step-card::before {
+        content: counter(step-counter);
+        counter-increment: step-counter;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 2.5rem;
+        height: 2.5rem;
+        background: #2d2d2d;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+    .steps-container {
+        counter-reset: step-counter;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen light-bg py-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h1 class="section-title mb-4" style="font-family: 'Caveat', cursive; font-size: 3.5rem;">
+                О проекте
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto" style="font-family: 'Playfair Display', serif; font-style: italic;">
+                Узнайте больше о нашей игре и как начать играть
+            </p>
+        </div>
+        
+        <!-- Main Info -->
+        <div class="bg-white/60 rounded-lg p-8 mb-8 border border-gray-200">
+            <div class="flex items-start space-x-4 mb-6">
+                <div class="text-5xl">🎄</div>
+                <div class="flex-1">
+                    <h2 class="text-2xl font-bold mb-4 text-gray-900" style="font-family: 'Caveat', cursive;">Мафия: Новогодний Переполох</h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                        Это современная онлайн-версия классической психологической игры в мафию с новогодней тематикой. 
+                        Игра полностью автоматизирована и работает через Telegram бота, что позволяет играть в любое время 
+                        и в любом месте, не нуждаясь в физическом присутствии ведущего.
+                    </p>
+                    <div class="flex items-center space-x-2 text-sm text-gray-600 mb-4">
+                        <span class="w-2 h-2 bg-gray-600 rounded-full"></span>
+                        <span>Версия 0.6.0 Beta</span>
+                        <span class="mx-2">•</span>
+                        <span>В активной разработке</span>
+                    </div>
+                    <!-- Bot Card -->
+                    <div class="bg-white/80 rounded-lg p-6 border border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-3xl">🤖</div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900" style="font-family: 'Playfair Display', serif;">@MoreThanSnow_bot</h3>
+                                    <p class="text-gray-600 text-sm">Наш Telegram бот</p>
+                                </div>
+                            </div>
+                            <a href="https://t.me/MoreThanSnow_bot" target="_blank" class="minimal-btn minimal-btn-primary">
+                                Добавить бота
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Features -->
+        <section class="mb-12">
+            <h2 class="section-title mb-8" style="font-family: 'Caveat', cursive;">✨ Особенности проекта</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="feature-card rounded-lg p-6 bg-white/60 border border-gray-200">
+                    <div class="text-3xl mb-4 text-center">🎅</div>
+                    <h3 class="text-lg font-semibold mb-3 text-center text-gray-900" style="font-family: 'Playfair Display', serif;">Новогодние роли</h3>
+                    <p class="text-gray-600 text-sm text-center leading-relaxed">
+                        Уникальные роли в новогоднем стиле: Санта-Комиссар, Гринч, Тёмный Эльф, Снегурочка и другие
+                    </p>
+                </div>
+                
+                <div class="feature-card rounded-xl p-6">
+                    <div class="text-4xl mb-4 text-center">🤖</div>
+                    <h3 class="text-lg font-semibold mb-3 text-center text-gray-900" style="font-family: 'Playfair Display', serif;">Полная автоматизация</h3>
+                    <p class="text-gray-600 text-sm text-center">
+                        Бот управляет всеми этапами игры: раздача ролей, управление стадиями, подсчёт голосов
+                    </p>
+                </div>
+                
+                <div class="feature-card rounded-xl p-6">
+                    <div class="text-4xl mb-4 text-center">⚙️</div>
+                    <h3 class="text-lg font-semibold mb-3 text-center text-gray-900" style="font-family: 'Playfair Display', serif;">Гибкие настройки</h3>
+                    <p class="text-gray-600 text-sm text-center">
+                        Настраиваемое время обсуждения, голосования и ночи для каждой группы отдельно
+                    </p>
+                </div>
+                
+                <div class="feature-card rounded-xl p-6">
+                    <div class="text-4xl mb-4 text-center">🛡️</div>
+                    <h3 class="text-lg font-semibold mb-3 text-center text-gray-900" style="font-family: 'Playfair Display', serif;">Защита от абуза</h3>
+                    <p class="text-gray-600 text-sm text-center">
+                        Система предотвращает читерство: нельзя выполнить одно действие дважды, автокик при пропуске действий
+                    </p>
+                </div>
+                
+                <div class="feature-card rounded-xl p-6">
+                    <div class="text-4xl mb-4 text-center">📜</div>
+                    <h3 class="text-lg font-semibold mb-3 text-center text-gray-900" style="font-family: 'Playfair Display', serif;">Правила Mafia</h3>
+                    <p class="text-gray-600 text-sm text-center">
+                        Классическая механика игры по правилам Mafia с поддержкой всех стандартных ролей
+                    </p>
+                </div>
+                
+                <div class="feature-card rounded-xl p-6">
+                    <div class="text-4xl mb-4 text-center">💬</div>
+                    <h3 class="text-lg font-semibold mb-3 text-center text-gray-900" style="font-family: 'Playfair Display', serif;">Удобный интерфейс</h3>
+                    <p class="text-gray-600 text-sm text-center">
+                        Все действия через кнопки в личных сообщениях, свободное общение днём, динамические таймеры
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- How to Start -->
+        <section class="bg-white/70 rounded-2xl p-8 border border-gray-200 mb-8">
+            <h2 class="section-title mb-8 text-center" style="font-family: 'Caveat', cursive;">🚀 Как начать играть</h2>
+            <div class="steps-container space-y-6">
+                <div class="step-card bg-white/80 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-semibold mb-3 text-gray-900" style="font-family: 'Playfair Display', serif;">Добавьте бота в группу</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Найдите нашего бота в Telegram и добавьте его в вашу группу. Убедитесь, что бот имеет права администратора 
+                        для отправки сообщений и управления чатом.
+                    </p>
+                </div>
+                
+                <div class="step-card bg-white/80 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-semibold mb-3 text-gray-900" style="font-family: 'Playfair Display', serif;">Создайте игру</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Используйте команду <code class="bg-gray-100 px-2 py-1 rounded text-gray-900">/create</code> в группе для создания новой игры. 
+                        Другие игроки могут присоединиться к игре, нажав кнопку "Вступить".
+                    </p>
+                </div>
+                
+                <div class="step-card bg-white/80 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-semibold mb-3 text-gray-900" style="font-family: 'Playfair Display', serif;">Настройте игру (опционально)</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Используйте команду <code class="bg-gray-100 px-2 py-1 rounded text-gray-900">/settings</code> для настройки времени обсуждения, 
+                        голосования и ночи. Настройки сохраняются для каждой группы отдельно.
+                    </p>
+                </div>
+                
+                <div class="step-card bg-white/80 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-semibold mb-3 text-gray-900" style="font-family: 'Playfair Display', serif;">Начните игру</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Когда наберётся минимальное количество игроков (по умолчанию 4), создатель игры может нажать кнопку 
+                        "Начать игру". Бот автоматически раздаст роли в личных сообщениях.
+                    </p>
+                </div>
+                
+                <div class="step-card bg-white/80 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-semibold mb-3 text-gray-900" style="font-family: 'Playfair Display', serif;">Получите роль и играйте</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Проверьте личные сообщения с ботом - там вы получите информацию о своей роли и способностях. 
+                        Следуйте инструкциям бота и наслаждайтесь игрой!
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Commands -->
+        <section class="bg-white/70 rounded-2xl p-8 border border-gray-200 mb-8">
+            <h2 class="section-title mb-6 text-center" style="font-family: 'Caveat', cursive;">⌨️ Основные команды</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white/80 p-4 rounded-lg border border-gray-200">
+                    <code class="text-gray-900 font-mono">/create</code>
+                    <p class="text-gray-700 text-sm mt-1">Создать новую игру</p>
+                </div>
+                <div class="bg-white/80 p-4 rounded-lg border border-gray-200">
+                    <code class="text-gray-900 font-mono">/settings</code>
+                    <p class="text-gray-700 text-sm mt-1">Настройки игры</p>
+                </div>
+                <div class="bg-white/80 p-4 rounded-lg border border-gray-200">
+                    <code class="text-gray-900 font-mono">/rules</code>
+                    <p class="text-gray-700 text-sm mt-1">Правила игры</p>
+                </div>
+                <div class="bg-white/80 p-4 rounded-lg border border-gray-200">
+                    <code class="text-gray-900 font-mono">/stats</code>
+                    <p class="text-gray-700 text-sm mt-1">Ваша статистика</p>
+                </div>
+                <div class="bg-white/80 p-4 rounded-lg border border-gray-200">
+                    <code class="text-gray-900 font-mono">/events</code>
+                    <p class="text-gray-700 text-sm mt-1">Магазин событий</p>
+                </div>
+                <div class="bg-white/80 p-4 rounded-lg border border-gray-200">
+                    <code class="text-gray-900 font-mono">/stopgame</code>
+                    <p class="text-gray-700 text-sm mt-1">Остановить игру (только для админов)</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tech Stack -->
+        <section class="bg-white/70 rounded-2xl p-8 border border-gray-200">
+            <h2 class="section-title mb-6 text-center" style="font-family: 'Caveat', cursive;">🛠️ Технологии</h2>
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white/80 p-6 rounded-lg border border-gray-200">
+                    <div class="text-3xl mb-3">🐍</div>
+                    <h3 class="font-semibold mb-2 text-gray-900" style="font-family: 'Playfair Display', serif;">Python</h3>
+                    <p class="text-gray-700 text-sm">Основной язык разработки</p>
+                </div>
+                <div class="bg-white/80 p-6 rounded-lg border border-gray-200">
+                    <div class="text-3xl mb-3">📱</div>
+                    <h3 class="font-semibold mb-2 text-gray-900" style="font-family: 'Playfair Display', serif;">Telegram Bot API</h3>
+                    <p class="text-gray-700 text-sm">Интеграция с Telegram</p>
+                </div>
+                <div class="bg-white/80 p-6 rounded-lg border border-gray-200">
+                    <div class="text-3xl mb-3">🌐</div>
+                    <h3 class="font-semibold mb-2 text-gray-900" style="font-family: 'Playfair Display', serif;">Flask</h3>
+                    <p class="text-gray-700 text-sm">Веб-интерфейс</p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="mt-12 text-center">
+            <a href="{{ url_for('index') }}" class="inline-flex items-center px-8 py-4 bg-indigo-600 hover:bg-indigo-700 rounded-lg transition text-lg font-semibold shadow-lg">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Вернуться на главную
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
