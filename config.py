@@ -3,12 +3,13 @@ import logging
 
 # --- ОСНОВНЫЕ НАСТРОЙКИ ---
 
-# ВАЖНО: Замените токен на новый, полученный от BotFather!
-# Рекомендуется использовать переменные окружения для защиты токена
-TOKEN = '8163198321:AAHuwe3-OiRFuetH7bs9YA437GrfZbh1cTc'  # Your bot token from @BotFather
+# Токен бота — только из переменной окружения
+TOKEN = os.getenv('TOKEN', '')
+if not TOKEN:
+    raise RuntimeError("Environment variable TOKEN is required")
 
 # ID админа (для команд /reset, /cancel чужих игр)
-# Можно узнать у @userinfobot
+# Можно узнать у @userinfobot; хранить в переменной окружения
 ADMIN_ID = int(os.getenv('ADMIN_ID', ''))
 
 SKIP_PENDING = False  # Пропускать ли старые сообщения при запуске бота
@@ -27,9 +28,8 @@ REQUEST_OVERDUE_TIME = 2 * 60
 
 # --- ПУТИ К ФАЙЛАМ ---
 
-# Определяем путь к файлу со словами относительно текущей папки
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-WORD_BASE = os.path.join(BASE_DIR, 'words.txt') 
+# Базовый путь проекта
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)) 
 
 # --- НАСТРОЙКИ ЛОГИРОВАНИЯ ---
 
