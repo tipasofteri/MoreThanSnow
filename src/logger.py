@@ -1,56 +1,81 @@
-# Copyright (C) 2017, 2018, 2019, 2020  alfred richardsn
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-
-from config import LOGGER_LEVEL
 import logging
+import sys
 
+# Пытаемся импортировать настройки, иначе ставим INFO по умолчанию
+try:
+    from config import LOGGER_LEVEL
+except ImportError:
+    LOGGER_LEVEL = logging.INFO
 
-class c:
-    l = '\033[0;32m'
-    g = '\033[0;37m'
-    e = '\033[0m'
-
+class Colors:
+    GREEN = '\033[0;32m'
+    GRAY = '\033[0;37m'
+    RESET = '\033[0m'
 
 def configure_logger():
     logger = logging.getLogger("mafbot")
     logger.setLevel(LOGGER_LEVEL)
-    terminal_logger = logging.StreamHandler()
-    formatter = logging.Formatter(f"\r{c.g}[%(asctime)s.%(msecs).03d]{c.e} %(message)s", datefmt="%H:%M:%S")
+    
+    # Логируем в стандартный вывод (консоль)
+    terminal_logger = logging.StreamHandler(sys.stdout)
+    
+    # Формат: [Время] Сообщение
+    # \r используется, чтобы курсор возвращался в начало строки (полезно при tqdm, но тут опционально)
+    formatter = logging.Formatter(
+        f"\r{Colors.GRAY}[%(asctime)s.%(msecs).03d]{Colors.RESET} %(message)s", 
+        datefmt="%H:%M:%S"
+    )
+    
     terminal_logger.setFormatter(formatter)
     logger.addHandler(terminal_logger)
     logger.propagate = False
+    
     return logger
 
-
+# Отключаем лишний шум от библиотеки werkzeug (веб-сервер)
 logging.getLogger('werkzeug').setLevel(logging.ERROR)
+
+# Инициализируем логгер
 logger = configure_logger()
 
-
 def log_update(update):
+    """
+    Логирует входящее событие от Telegram.
+    Нужно вызывать эту функцию перед обработкой апдейта.
+    """
+    msg = ''
+    qc = Colors.RESET
+    chat_id = 0
+    user_id = 0
+    
+    # 1. Обычное сообщение
     if update.message:
-        chat = update.message.chat.id
-        id = update.message.from_user.id
-        msg = update.message.text if update.message.text else ''
-        qc = c.e
+        chat_id = update.message.chat.id
+        user_id = update.message.from_user.id
+        # Если текста нет (стикер, фото), ставим пустую строку
+        msg = update.message.text if update.message.text else '<media>'
+        qc = Colors.RESET
+        
+    # 2. Нажатие на кнопку (Callback)
     elif update.callback_query:
-        chat = update.callback_query.message.chat.id
-        id = update.callback_query.from_user.id
+        chat_id = update.callback_query.message.chat.id
+        user_id = update.callback_query.from_user.id
         msg = update.callback_query.data
-        qc = c.l
+        qc = Colors.GREEN
+        
+    # 3. Редактирование сообщения (добавил для полноты)
+    elif update.edited_message:
+        chat_id = update.edited_message.chat.id
+        user_id = update.edited_message.from_user.id
+        msg = f"[EDIT] {update.edited_message.text}"
+        qc = Colors.GRAY
+        
     else:
+        # Другие типы событий (inline, channel_post) пока игнорируем или логируем кратко
         return
 
-    logger.info(f'<{chat:>14}:{id:<9}> {qc}{repr(msg)[1:-1]}{c.e}')
+    # repr() экранирует спецсимволы (например \n), срез [1:-1] убирает кавычки
+    safe_msg = repr(msg)[1:-1]
+    
+    # Форматирование: <ChatID : UserID> Текст
+    logger.info(f'<{chat_id:>14}:{user_id:<9}> {qc}{safe_msg}{Colors.RESET}')

@@ -14,5 +14,8 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-from . import handlers
-from .app import main
+# Initialize an empty __all__ to control what gets imported with 'from src import *'
+__all__ = []
+
+# Import handlers but avoid circular imports
+# The actual imports will be done when needed in the respective modules
